@@ -1,1 +1,95 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kafe Modern - Interactive Menu</title>
+    
+    <!-- Menghubungkan file Eksternal CSS untuk styling tampilan -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Google Fonts: Menggunakan font 'Poppins' agar tampilan modern dan ramah Gen-Z -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
 
+    <!-- ================= BAGIAN HEADER / BANNER ================= -->
+    <header class="header">
+        <div class="header-content">
+            <h1>☕ Kafe Senja Nusantara</h1>
+            <p>Pesan praktis langsung dari meja Anda, nikmati harimu!</p>
+        </div>
+        <!-- Tombol interaktif untuk membuka fitur Mini Games / Undian Diskon -->
+        <button id="spinBtn" class="game-btn">🎁 Putar & Menangkan Diskon!</button>
+    </header>
+
+    <!-- ================= BAGIAN PENCARIAN & FILTER KATEGORI ================= -->
+    <div class="filter-container">
+        <!-- Input pencarian menu secara real-time via JavaScript -->
+        <input type="text" id="searchInput" placeholder="🔍 Cari menu favoritmu...">
+        
+        <!-- Tombol kategori untuk memfilter jenis menu -->
+        <div class="categories">
+            <button class="cat-btn active" data-category="all">Semua</button>
+            <button class="cat-btn" data-category="coffee">Kopi</button>
+            <button class="cat-btn" data-category="non-coffee">Non-Kopi</button>
+            <button class="cat-btn" data-category="food">Makanan</button>
+            <button class="cat-btn" data-category="dessert">Dessert</button>
+        </div>
+    </div>
+
+    <!-- ================= BAGIAN DAFTAR MENU (MAIN GRID) ================= -->
+    <!-- Elemen kosong ini akan diisi secara otomatis oleh JavaScript (script.js) -->
+    <main class="menu-grid" id="menuGrid">
+        <!-- Kartu-kartu menu produk akan dirender di sini -->
+    </main>
+
+    <!-- ================= BAGIAN KERANJANG MENGAMBANG (FLOATING CART) ================= -->
+    <!-- Muncul di bagian bawah layar jika pelanggan sudah memilih minimal 1 menu -->
+    <div class="cart-floating" id="cartFloating">
+        <div class="cart-info">
+            <span>🛒 <strong id="cartCount">0</strong> Item</span>
+            <span id="cartTotal">Rp 0</span>
+        </div>
+        <button id="checkoutBtn">Pesan Sekarang</button>
+    </div>
+
+    <!-- ================= BAGIAN MODAL CHECKOUT / KONFIRMASI PESANAN ================= -->
+    <div class="modal" id="checkoutModal">
+        <div class="modal-content">
+            <h2>Konfirmasi Pesanan Anda</h2>
+            <!-- Daftar item yang dibeli dimuat di sini -->
+            <div id="cartItemsList" class="cart-items-list"></div>
+            
+            <div class="modal-total">
+                <strong>Total Keseluruhan: </strong> <span id="modalTotalAmount">Rp 0</span>
+            </div>
+            
+            <!-- Input nomor meja pelanggan -->
+            <div class="form-group">
+                <label for="tableNumber">Nomor Meja:</label>
+                <input type="text" id="tableNumber" placeholder="Contoh: Meja 05">
+            </div>
+            
+            <div class="modal-actions">
+                <!-- Tombol untuk mengirim pesanan langsung ke WhatsApp Kasir -->
+                <button id="sendWhatsApp" class="wa-btn">Kirim Pesanan via WhatsApp</button>
+                <button id="closeModal" class="close-btn">Tutup</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= BAGIAN MODAL MINI GAMES / UNDIAN BERHADIAH ================= -->
+    <div class="modal" id="gameModal">
+        <div class="modal-content text-center">
+            <h2>🎉 Kejutan Hari Ini!</h2>
+            <p id="gameResultText">Klik tombol di bawah untuk mencoba peruntunganmu mendapatkan diskon menarik!</p>
+            <button id="spinActionBtn" class="game-btn">Mulai Undian</button>
+            <button id="closeGameModal" class="close-btn" style="margin-top: 10px;">Kembali ke Menu</button>
+        </div>
+    </div>
+
+    <!-- Menghubungkan file Eksternal JavaScript untuk logika aplikasi -->
+    <script src="script.js"></script>
+</body>
+</html>
