@@ -1,1 +1,305 @@
+/* ================= VARIABLES & RESET ================= */
+:root {
+    --primary: #ff6b6b;
+    --primary-dark: #ee5253;
+    --bg-color: #f8f9fa;
+    --card-bg: #ffffff;
+    --text-main: #2d3436;
+    --text-muted: #636e72;
+    --radius: 12px;
+    --shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
 
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    padding-bottom: 90px; /* Memberi jarak agar tidak tertutup keranjang mengambang */
+}
+
+/* ================= HEADER & BANNER ================= */
+.header {
+    background: linear-gradient(135deg, #2d3436, #1e272c);
+    color: white;
+    padding: 30px 20px;
+    text-align: center;
+}
+.header h1 { 
+    font-size: 1.6rem; 
+    margin-bottom: 5px; 
+}
+.header p { 
+    font-size: 0.9rem; 
+    color: #b2bec3; 
+}
+
+.game-btn {
+    margin-top: 15px;
+    background: linear-gradient(135deg, #f39c12, #e67e22);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(243, 156, 18, 0.4);
+    transition: transform 0.2s;
+}
+.game-btn:active { 
+    transform: scale(0.95); 
+}
+
+/* ================= FILTER & SEARCH BAR ================= */
+.filter-container {
+    padding: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+#searchInput {
+    width: 100%;
+    padding: 12px 18px;
+    border: 1px solid #dfe6e9;
+    border-radius: var(--radius);
+    font-size: 0.95rem;
+    outline: none;
+    background: white;
+    box-shadow: var(--shadow);
+    margin-bottom: 12px;
+}
+.categories {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding-bottom: 5px;
+}
+.categories::-webkit-scrollbar { 
+    display: none; /* Menyembunyikan scrollbar horizontal agar bersih */
+}
+.cat-btn {
+    background: white;
+    border: 1px solid #dfe6e9;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s;
+}
+.cat-btn.active {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+/* ================= DAFTAR MENU GRID ================= */
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+    padding: 0 20px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+.menu-card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+}
+.menu-img-container {
+    position: relative;
+    height: 150px;
+    overflow: hidden;
+}
+.menu-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s;
+}
+.menu-card:hover img { 
+    transform: scale(1.05); 
+}
+.menu-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(0,0,0,0.6);
+    color: white;
+    padding: 3px 8px;
+    font-size: 0.75rem;
+    border-radius: 6px;
+}
+.menu-info {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+.menu-info h3 { 
+    font-size: 1.05rem; 
+    margin-bottom: 5px; 
+}
+.menu-info p { 
+    font-size: 0.85rem; 
+    color: var(--text-muted); 
+    margin-bottom: 12px; 
+    flex-grow: 1; 
+}
+.menu-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.price { 
+    font-weight: 600; 
+    color: var(--primary-dark); 
+    font-size: 1rem; 
+}
+.add-btn {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 0.85rem;
+}
+.add-btn:active { 
+    transform: scale(0.95); 
+}
+
+/* ================= KERANJANG MENGAMBANG (FLOATING CART) ================= */
+.cart-floating {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    padding: 15px 25px;
+    box-shadow: 0 -4px 16px rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+    z-index: 100;
+}
+.cart-floating.show { 
+    transform: translateY(0); 
+}
+.cart-info { 
+    display: flex; 
+    flex-direction: column; 
+}
+.cart-info span:first-child { 
+    font-size: 0.85rem; 
+    color: var(--text-muted); 
+}
+.cart-info span:last-child { 
+    font-size: 1.1rem; 
+    font-weight: 700; 
+    color: var(--primary-dark); 
+}
+#checkoutBtn {
+    background: #27ae60;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* ================= MODAL POPUP (CHECKOUT & GAMES) ================= */
+.modal {
+    display: none; /* Sembunyikan secara default */
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 200;
+    padding: 20px;
+}
+.modal-content {
+    background: white;
+    width: 100%;
+    max-width: 450px;
+    padding: 25px;
+    border-radius: var(--radius);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    max-height: 80vh;
+    overflow-y: auto;
+}
+.modal-content h2 { 
+    font-size: 1.2rem; 
+    margin-bottom: 15px; 
+}
+.cart-items-list { 
+    margin-bottom: 15px; 
+    max-height: 200px; 
+    overflow-y: auto; 
+}
+.cart-item-row { 
+    display: flex; 
+    justify-content: space-between; 
+    margin-bottom: 8px; 
+    font-size: 0.9rem; 
+}
+.modal-total { 
+    border-top: 1px solid #dfe6e9; 
+    padding-top: 10px; 
+    margin-bottom: 15px; 
+    display: flex; 
+    justify-content: space-between; 
+}
+.form-group { 
+    margin-bottom: 15px; 
+}
+.form-group label { 
+    display: block; 
+    font-size: 0.85rem; 
+    margin-bottom: 5px; 
+    font-weight: 500; 
+}
+.form-group input { 
+    width: 100%; 
+    padding: 10px; 
+    border: 1px solid #dfe6e9; 
+    border-radius: 6px; 
+}
+.modal-actions { 
+    display: flex; 
+    gap: 10px; 
+}
+.wa-btn { 
+    background: #25d366; 
+    color: white; 
+    border: none; 
+    padding: 10px; 
+    border-radius: 6px; 
+    flex-grow: 1; 
+    font-weight: 600; 
+    cursor: pointer; 
+}
+.close-btn { 
+    background: #b2bec3; 
+    color: white; 
+    border: none; 
+    padding: 10px 15px; 
+    border-radius: 6px; 
+    cursor: pointer; 
+}
+.text-center { 
+    text-align: center; 
+}
